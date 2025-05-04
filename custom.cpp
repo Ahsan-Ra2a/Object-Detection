@@ -3,15 +3,12 @@
 
 namespace Data_Structure {
 
-    // ==== Detection Struct ====
     Detection::Detection(int id, float conf, cv::Rect b)
         : ClassId(id), Confidence(conf), box(b) {
     }
 
-    // ==== Hash_Node Struct ====
     Hash_Node::Hash_Node(std::string k, int v) : key(k), value(v), next(nullptr) {}
 
-    // ==== Hash_Map Class ====
     Hash_Map::Hash_Map() {
         for (int i = 0; i < SIZE; ++i) table[i] = nullptr;
     }
@@ -70,7 +67,6 @@ namespace Data_Structure {
         }
     }
 
-    // ==== Output Layer Helper ====
     std::vector<std::string> Get_Output_Layer_Names(const cv::dnn::Net& net) {
         static std::vector<std::string> names;
         if (names.empty()) {
