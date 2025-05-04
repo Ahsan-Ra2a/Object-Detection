@@ -93,6 +93,5 @@ int main(void) {
 
     cap.release();
     cv::destroyAllWindows();
-    
-    return 0;
+
 }
