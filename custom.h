@@ -7,7 +7,6 @@
 
 namespace Data_Structure {
 
-    // Struct for detected objects
     class Detection {
     public:
         int ClassId;
@@ -16,7 +15,6 @@ namespace Data_Structure {
         Detection(int id, float conf, cv::Rect b);
     };
 
-    // Manually implemented simple hash map (chained hashing)
     class Hash_Node {
     public:
         std::string key;
@@ -38,7 +36,6 @@ namespace Data_Structure {
         ~Hash_Map();
     };
 
-    // Helper function
     std::vector<std::string> Get_Output_Layer_Names(const cv::dnn::Net& net);
 
 }
