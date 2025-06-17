@@ -81,7 +81,7 @@ net.forward(outputs, net.getUnconnectedOutLayersNames());
 ---
 
 ## 📷 Sample Output
-  check uploaded video is the sample of the program
+- uplaoded video is the exmaple ouput window of program
 ---
 
 ## 📌 Notes
