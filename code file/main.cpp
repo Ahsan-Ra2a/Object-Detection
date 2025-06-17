@@ -5,7 +5,7 @@
 
 
 int main(void) {
-
+    
     cv::dnn::Net net = cv::dnn::readNetFromDarknet("yolov3.cfg", "yolov3.weights");
     net.setPreferableBackend(cv::dnn::DNN_BACKEND_OPENCV);
     net.setPreferableTarget(cv::dnn::DNN_TARGET_CPU);
@@ -14,13 +14,14 @@ int main(void) {
     std::ifstream ifs("coco.names");
     std::string line;
     while (getline(ifs, line)) classes.push_back(line);
-
+    
+    // (0) is used for default camera, use path if using another webcam
     cv::VideoCapture cap(0); 
     if (!cap.isOpened()) {
         std::cerr << "ERROR: Cannot open camera." << std::endl;
         return -1;
     }
-
+    // setting resolution of video frame
     cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
     cap.set(cv::CAP_PROP_FPS, 30);
@@ -30,6 +31,7 @@ int main(void) {
     float nmsThreshold = 0.4;
     int distanceThresholdArea = 20000;
 
+    // taking frame input from webcam
     cv::Mat frame;
     while (true) {
 
@@ -46,6 +48,7 @@ int main(void) {
 
         std::vector< Data_Structure::Detection> detections;
 
+        // checking position co-ordinates where object is detecting
         for (auto& output : outputs) {
             for (int i = 0; i < output.rows; ++i) {
                 cv::Mat scores = output.row(i).colRange(5, output.cols);
@@ -81,6 +84,7 @@ int main(void) {
 
         Data_Structure::Hash_Map map;
 
+        // making box where object is detected
         for (int idx : indices) {
             Data_Structure::Detection d = detections[idx];
             std::string label = cv::format("%s: %.2f", classes[d.ClassId].c_str(), d.Confidence);
@@ -92,7 +96,8 @@ int main(void) {
 
         imshow("Detection System", frame);
         map.Print_All();
-
+        
+        // waiting for Esc key to off the window
         if (cv::waitKey(1) == 27) break;
     }
 
