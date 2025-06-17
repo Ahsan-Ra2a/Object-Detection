@@ -81,9 +81,7 @@ net.forward(outputs, net.getUnconnectedOutLayersNames());
 ---
 
 ## 📷 Sample Output
-
-Add sample video or images in `/output/` folder after testing.
-
+  check uploaded video is the sample of the program
 ---
 
 ## 📌 Notes
